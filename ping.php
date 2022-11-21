@@ -12,12 +12,14 @@
     </form>
 
     <?php
-    $ipaddress = $_POST["ipaddress"];
-    $output = null;
-    $retval = null;
-    exec("ping -n 1 $ipaddress", $output, $retval);
-    $output = nl2br(mb_convert_encoding(implode("\n", $output), "utf-8", "auto"));
-    echo $output;
+    if(isset($_POST['ipaddress'])){
+        $ipaddress = $_POST["ipaddress"];
+        $output = null;
+        $retval = null;
+        exec("ping -n 1 $ipaddress", $output, $retval); // if you use linux, change -n to -c
+        $output = nl2br(mb_convert_encoding(implode("\n", $output), "utf-8", "auto"));
+        echo $output;
+    }
     ?>
 
 </body>
